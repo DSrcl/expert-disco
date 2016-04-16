@@ -4143,7 +4143,7 @@ MachineInstr *X86InstrInfo::getGlobalPICAddr(MachineFunction &MF, unsigned DestR
 }
 
 MachineInstr *X86InstrInfo::storeReg(MachineFunction &MF, unsigned SrcReg,
-                                     unsigned IndexReg, unsigned Offset,
+                                     unsigned BaseReg, unsigned Offset,
                                      const TargetRegisterClass *RC) const {
   /*
     X86AddressMode()
@@ -4152,7 +4152,7 @@ MachineInstr *X86InstrInfo::storeReg(MachineFunction &MF, unsigned SrcReg,
     Base.Reg = 0;
     */
   X86AddressMode AM;
-  AM.IndexReg = IndexReg;
+  AM.Base.Reg = BaseReg;
   AM.Scale = 1;
   AM.Disp = Offset;
   unsigned Opc = getStoreRegOpcode(SrcReg, RC, true, Subtarget);
