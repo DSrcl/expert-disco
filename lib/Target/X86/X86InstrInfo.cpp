@@ -4116,7 +4116,7 @@ MachineInstr *X86InstrInfo::getGlobalPICAddr(MachineFunction &MF, unsigned DestR
   auto GVFlags = X86II::MO_GOTPCREL;
 
   // "FIXME": How do we know Base.Reg is free??
-  AM.Base.Reg = getGlobalBaseReg(&MF);
+  AM.Base.Reg = Subtarget.is64Bit() ? X86::RIP : getGlobalBaseReg(&MF);
 
   // Issue load from stub.
   unsigned Opc = 0;
