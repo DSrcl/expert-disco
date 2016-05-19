@@ -114,7 +114,7 @@ def diffResults(d_old, d_new):
 
         if d_new[t][x] > d_old[t][x] and d_old[t][x] > 0.0 and \
               (d_new[t][x] - d_old[t][x]) / d_old[t][x] > .05:
-          regressions[x] += t + ": " + "{0:.1f}".format(100 * (d_new[t][x] - d_old[t][x]) / d_old[t][x]) + "%\n"
+          regressions[x] += t + ": {0:.1%}\n".format((d_new[t][x] - d_old[t][x]) / d_old[t][x])
 
     else :
       removed += t + "\n"
